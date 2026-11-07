@@ -1,0 +1,8 @@
+[DOC_001] Fonte: Embrapa Solos e Irrigação - Manejo de Irrigação em Culturas de Grãos
+A lâmina de água ideal para a cultura do milho na fase de desenvolvimento vegetativo (V4 a V8) varia entre 4mm a 6mm diários, dependendo da evapotranspiração da região. O excesso de água nesta fase pode apodrecer as raízes e favorecer o surgimento de fungos.
+
+[DOC_002] Fonte: Manual de Pragas Agrícolas - FAO
+Sintomas de carência de Nitrogênio em plantações de milho e hortaliças incluem o amarelamento em formato de "V" invertido na ponta das folhas mais velhas, progredindo para o centro da planta. Deve-se realizar adubação nitrogenada de cobertura.
+
+[DOC_003] Fonte: Guia de Alerta de Geadas e Secas - INMET
+Temperaturas abaixo de 3°C com umidade relativa do ar reduzida nas primeiras horas da manhã representam risco iminente de geada leve para culturas sensíveis como hortaliças e feijão. Recomenda-se irrigação prévia por aspersão noturna para proteção térmica.

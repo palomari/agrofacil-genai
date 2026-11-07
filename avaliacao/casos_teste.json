@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "pergunta": "Qual a lâmina de água ideal para o milho na fase vegetativa?",
+    "gabarito_esperado": "A lâmina ideal varia entre 4mm a 6mm diários (Conforme Embrapa).",
+    "tipo": "esperado"
+  },
+  {
+    "id": 2,
+    "pergunta": "Quais são os sintomas de carência de Nitrogênio nas plantações?",
+    "gabarito_esperado": "Amarelamento em formato de V invertido na ponta das folhas mais velhas.",
+    "tipo": "esperado"
+  },
+  {
+    "id": 3,
+    "pergunta": "O que deve ser feito para proteger culturas sensíveis contra geadas leves?",
+    "gabarito_esperado": "Recomenda-se irrigação prévia por aspersão noturna para proteção térmica (Conforme INMET).",
+    "tipo": "esperado"
+  },
+  {
+    "id": 4,
+    "pergunta": "Qual o preço atual do saco de adubo nitrogenado no mercado de São Paulo?",
+    "gabarito_esperado": "Não consta na base de conhecimento.",
+    "tipo": "nao_consta"
+  },
+  {
+    "id": 5,
+    "pergunta": "Quantos deputados federais o estado de São Paulo possui?",
+    "gabarito_esperado": "Não consta na base de conhecimento.",
+    "tipo": "nao_consta"
+  },
+  {
+    "id": 6,
+    "pergunta": "Qual é a programação de voos comerciais para o aeroporto de Viracopos amanhã?",
+    "gabarito_esperado": "Não consta na base de conhecimento.",
+    "tipo": "nao_consta"
+  }
+]
