@@ -65,18 +65,6 @@ O **AgroFácil GenAI** é um sistema de inteligência artificial generativa conc
 
 A arquitetura combina a precisão da recuperação vetorial por **Retrieval-Augmented Generation (RAG)** com a eficiência de um **modelo especializado via LoRA (4-bit)** sobre a base `Qwen2.5-1.5B-Instruct`.
 
-<table width="100%" style="border-collapse: collapse; margin: 15px 0;">
-  <tr style="background-color: #e8f5ed; border: 1px solid #d4e5dc;">
-    <td style="padding: 15px; color: #1b3a2b;">
-      <h4 style="margin: 0 0 8px 0; color: #2e8b57;">PALETA DE CORES DA INTERFACE WEB</h4>
-      <code>Base Principal: #1b3a2b (Verde Floresta)</code> | 
-      <code>Destaque: #2e8b57 (Verde Esmeralda)</code><br>
-      <code>Superfície: #e8f5ed (Menta Suave)</code> | 
-      <code>Linha/Borda: #d4e5dc (Verde Menta)</code>
-    </td>
-  </tr>
-</table>
-
 ### Principais Pilares de Projeto
 
 * **Respostas Fundamentadas:** Utilização exclusiva de bases técnicas oficiais (Embrapa, FAO, INMET).
