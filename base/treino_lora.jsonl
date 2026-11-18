@@ -1,0 +1,44 @@
+{"pergunta": "O que quer dizer aviso amarelo do INMET?", "fonte_id": "T01", "resposta": "O aviso amarelo do INMET indica perigo potencial. O laranja indica perigo e o vermelho, grande perigo."}
+{"pergunta": "Onde vejo os avisos meteorológicos do INMET?", "fonte_id": "T01", "resposta": "Os avisos do INMET são atualizados todo dia no site avisos.inmet.gov.br."}
+{"pergunta": "Quem emite o alerta com as medidas que devo tomar na minha cidade?", "fonte_id": "T02", "resposta": "É a Defesa Civil. Ela avalia o risco local e diz o que fazer. O INMET emite o aviso sobre o tempo previsto."}
+{"pergunta": "Preciso me cadastrar para receber mensagem de risco iminente de desastre?", "fonte_id": "T03", "resposta": "Não. Em risco iminente, o Defesa Civil Alerta manda a mensagem direto para os celulares da área, sem cadastro. Para receber avisos preventivos, envie o CEP por SMS para 40199."}
+{"pergunta": "Tem WhatsApp da Defesa Civil para receber informação da minha região?", "fonte_id": "T03", "resposta": "Sim. O WhatsApp da Defesa Civil é (61) 2034-4611. Também dá para enviar o CEP por SMS para 40199."}
+{"pergunta": "Noite fria e sem nuvens pode dar geada?", "fonte_id": "T04", "resposta": "Sim. A geada costuma acontecer nas madrugadas de noites calmas e de céu limpo, quando a temperatura cai abaixo de 0 °C, geralmente depois de uma frente fria."}
+{"pergunta": "Qual parte da propriedade sofre mais com a geada?", "fonte_id": "T04", "resposta": "As baixadas e os fundos de vale, porque o ar frio se acumula nas partes mais baixas do terreno."}
+{"pergunta": "Feijão é sensível à geada?", "fonte_id": "T05", "resposta": "Sim. Feijão, banana, tomate e batata começam a sofrer danos com temperaturas abaixo de 0 °C."}
+{"pergunta": "Do que depende o tamanho do estrago da geada?", "fonte_id": "T05", "resposta": "Depende da intensidade da geada, da espécie cultivada, da fase da cultura, da umidade do solo e do terreno."}
+{"pergunta": "Por que molhar as plantas protege da geada?", "fonte_id": "T06", "resposta": "Porque a energia que congelaria a folha é gasta congelando a água que está sobre ela. Funciona melhor com aspersão uniforme."}
+{"pergunta": "Para onde devo direcionar o pivô na noite de geada?", "fonte_id": "T06", "resposta": "Para a parte mais baixa do terreno, ligado por volta das 3h da madrugada em velocidade máxima e 100% da capacidade."}
+{"pergunta": "Quando é a hora mais fria da noite de geada?", "fonte_id": "T06", "resposta": "Poucos minutos antes do nascer do sol."}
+{"pergunta": "Molhar o solo na véspera da geada ajuda?", "fonte_id": "T07", "resposta": "Não. Irrigar no dia anterior pode aumentar o dano, porque o solo úmido esfria mais e perde calor mais rápido. Irrigue só durante a geada."}
+{"pergunta": "O que é manejo da irrigação?", "fonte_id": "T08", "resposta": "É decidir quando irrigar e quanta água aplicar, usando a água com máxima eficiência na seca. Pode ser feito pelo clima, pela planta ou pelo solo."}
+{"pergunta": "Para que serve o tensiômetro?", "fonte_id": "T08", "resposta": "O tensiômetro mede a tensão da água no solo e ajuda a decidir a hora de irrigar."}
+{"pergunta": "O que é o Kc da cultura?", "fonte_id": "T09", "resposta": "É o coeficiente da cultura, que varia com a cultura e a fase. A necessidade de água é ETc = ETo x Kc."}
+{"pergunta": "De onde posso tirar os dados de clima para calcular a irrigação?", "fonte_id": "T09", "resposta": "De estações automáticas, de estações do INMET ou de aeroportos próximos."}
+{"pergunta": "Como o Irrigas mostra que está na hora de irrigar?", "fonte_id": "T10", "resposta": "Quando o solo seca abaixo do nível crítico, o ar passa pela cápsula porosa e a água sobe no copo transparente. Isso indica que é hora de irrigar."}
+{"pergunta": "Preciso de aparelho para usar o método do tato?", "fonte_id": "T11", "resposta": "Não. Basta apertar uma amostra de solo na mão e observar a cor, a umidade e se ela se desfaz."}
+{"pergunta": "Qual o peso usado no método da barra de ferro?", "fonte_id": "T12", "resposta": "Um peso fixo de 2 kg. Conta-se quantos golpes são precisos para a barra chegar a 0,20 m de profundidade."}
+{"pergunta": "Preciso calibrar o método da barra de ferro?", "fonte_id": "T12", "resposta": "Sim. Calibre no local comparando com o método do tato, anotando os golpes do solo úmido e do solo mais seco."}
+{"pergunta": "Plástico embaixo do canteiro de hortaliça economiza água?", "fonte_id": "T13", "resposta": "Sim, a 0,25 m ou 0,35 m de profundidade. Mas reduza a irrigação nesses canteiros para não encharcar e amarelar as plantas."}
+{"pergunta": "Sombrite ajuda a economizar água?", "fonte_id": "T13", "resposta": "Sim. O sombrite reduziu a evapotranspiração e o tempo de irrigação."}
+{"pergunta": "Dá para reaproveitar água na propriedade durante a seca?", "fonte_id": "T14", "resposta": "Sim. A Embrapa indica métodos de reúso como o Bioágua Familiar, além de aproveitar a água da chuva."}
+{"pergunta": "Que planta resiste melhor à seca para o Nordeste?", "fonte_id": "T15", "resposta": "Sorgo e palma forrageira. Em áreas de alto risco, a Embrapa indica trocar o milho pelo sorgo."}
+{"pergunta": "Revolver muito o solo é bom na seca?", "fonte_id": "T16", "resposta": "Não. A recomendação é reduzir o revolvimento, manter o solo coberto com palha ou plantas e incorporar matéria orgânica."}
+{"pergunta": "Devo diminuir o número de animais na seca?", "fonte_id": "T17", "resposta": "Sim. Ajuste a quantidade de animais à capacidade real da propriedade e forme reserva de forragem com antecedência."}
+{"pergunta": "Desde quando existe o zoneamento agrícola de risco climático?", "fonte_id": "T18", "resposta": "O Zarc é feito desde 1996. Ele indica as épocas de plantio com menor risco por município e cultura."}
+{"pergunta": "Que planta de cobertura usar no inverno no Sul antes da soja?", "fonte_id": "T19", "resposta": "Centeio, aveia ou nabo forrageiro, para proteger o solo contra a erosão."}
+{"pergunta": "Chuva demais pode causar doença na raiz da soja?", "fonte_id": "T20", "resposta": "Sim. A podridão radicular de fitóftora é comum em solos compactados ou mal drenados. Use cultivares resistentes e trate as sementes com fungicida."}
+{"pergunta": "O que levar no kit de emergência?", "fonte_id": "T21", "resposta": "Documentos, roupas, água e medicamentos, para sair imediatamente se for preciso."}
+{"pergunta": "Posso passar de carro por estrada alagada depois do temporal?", "fonte_id": "T22", "resposta": "Não. A Defesa Civil orienta não atravessar áreas alagadas, nem a pé nem de carro."}
+{"pergunta": "Devo desligar o gás antes do vendaval?", "fonte_id": "T23", "resposta": "Sim. Desligue os aparelhos elétricos e o gás, revise o telhado e coloque no chão objetos que possam cair."}
+{"pergunta": "Qual o telefone dos bombeiros?", "fonte_id": "T24", "resposta": "O Corpo de Bombeiros atende no 193. A Defesa Civil atende no 199."}
+{"pergunta": "Qual o preço do boi gordo hoje?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Qual o preço do café arábica esta semana?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Vai chover no sábado em Londrina?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Qual a dose de 2,4-D por hectare no milho?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Como tratar mastite em vaca de leite?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Qual a melhor marca de trator para pequena propriedade?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Como declarar o imposto de renda do produtor rural?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Qual a capital da Austrália?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Quem ganhou o jogo de futebol ontem?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}
+{"pergunta": "Qual o espaçamento ideal para plantar mandioca?", "fonte_id": null, "resposta": "Não consta na base de conhecimento."}

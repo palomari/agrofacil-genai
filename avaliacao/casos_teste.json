@@ -1,38 +1,39 @@
 [
-  {
-    "id": 1,
-    "pergunta": "Qual a lâmina de água ideal para o milho na fase vegetativa?",
-    "gabarito_esperado": "A lâmina ideal varia entre 4mm a 6mm diários (Conforme Embrapa).",
-    "tipo": "esperado"
-  },
-  {
-    "id": 2,
-    "pergunta": "Quais são os sintomas de carência de Nitrogênio nas plantações?",
-    "gabarito_esperado": "Amarelamento em formato de V invertido na ponta das folhas mais velhas.",
-    "tipo": "esperado"
-  },
-  {
-    "id": 3,
-    "pergunta": "O que deve ser feito para proteger culturas sensíveis contra geadas leves?",
-    "gabarito_esperado": "Recomenda-se irrigação prévia por aspersão noturna para proteção térmica (Conforme INMET).",
-    "tipo": "esperado"
-  },
-  {
-    "id": 4,
-    "pergunta": "Qual o preço atual do saco de adubo nitrogenado no mercado de São Paulo?",
-    "gabarito_esperado": "Não consta na base de conhecimento.",
-    "tipo": "nao_consta"
-  },
-  {
-    "id": 5,
-    "pergunta": "Quantos deputados federais o estado de São Paulo possui?",
-    "gabarito_esperado": "Não consta na base de conhecimento.",
-    "tipo": "nao_consta"
-  },
-  {
-    "id": 6,
-    "pergunta": "Qual é a programação de voos comerciais para o aeroporto de Viracopos amanhã?",
-    "gabarito_esperado": "Não consta na base de conhecimento.",
-    "tipo": "nao_consta"
-  }
+  {"id": 1, "tipo": "esperado", "pergunta": "O que significa quando o INMET emite um aviso na cor laranja?", "doc_ids": ["T01"], "gabarito": "Laranja indica perigo (amarelo = perigo potencial, vermelho = grande perigo).", "chaves": [["perigo"]]},
+  {"id": 2, "tipo": "esperado", "pergunta": "Com quantos dias de antecedência o INMET pode emitir um aviso meteorológico?", "doc_ids": ["T01"], "gabarito": "Até cinco dias de antecedência.", "chaves": [["5", "cinco"]]},
+  {"id": 3, "tipo": "esperado", "pergunta": "Qual a diferença entre o aviso do INMET e o alerta da Defesa Civil?", "doc_ids": ["T02"], "gabarito": "O aviso informa a previsão do fenômeno; o alerta é da Defesa Civil, avalia o risco local e diz que medidas tomar.", "chaves": [["defesa civil"], ["risco"]]},
+  {"id": 4, "tipo": "esperado", "pergunta": "Como faço para receber os alertas da Defesa Civil no meu celular?", "doc_ids": ["T03"], "gabarito": "Enviar SMS com o CEP para 40199 (ou WhatsApp (61) 2034-4611).", "chaves": [["40199"], ["cep"]]},
+  {"id": 5, "tipo": "esperado", "pergunta": "Em que condições do tempo a geada costuma acontecer?", "doc_ids": ["T04"], "gabarito": "Abaixo de 0 °C, após frentes frias, em madrugadas de noites calmas e céu limpo.", "chaves": [["frente fria", "frentes frias", "noites calmas", "ceu limpo", "madrugada"]]},
+  {"id": 6, "tipo": "esperado", "pergunta": "Por que a geada é mais forte nas baixadas do terreno?", "doc_ids": ["T04"], "gabarito": "Porque o ar frio se acumula nas partes baixas.", "chaves": [["ar frio"]]},
+  {"id": 7, "tipo": "esperado", "pergunta": "Quais culturas costumam ter as maiores perdas com geada?", "doc_ids": ["T05"], "gabarito": "Café, cana-de-açúcar, citros, culturas de clima temperado e hortaliças (feijão, banana, tomate e batata são sensíveis).", "chaves": [["cafe", "cana", "citros", "hortalica", "feijao", "tomate", "batata", "banana"]]},
+  {"id": 8, "tipo": "esperado", "pergunta": "A que horas devo ligar o pivô central para proteger a lavoura da geada?", "doc_ids": ["T06"], "gabarito": "Por volta das 3h da madrugada, em velocidade máxima e 100% da capacidade, para a parte mais baixa.", "chaves": [["3h", "3 h", "3 horas", "tres horas", "03h", "3:00"]]},
+  {"id": 9, "tipo": "esperado", "pergunta": "Posso irrigar a lavoura no dia anterior à geada para prevenir o dano?", "doc_ids": ["T07"], "gabarito": "Não: irrigar no dia anterior pode aumentar o dano, porque o solo úmido esfria mais.", "chaves": [["aumentar o dano", "aumenta o dano", "aumentar os danos", "solo umido", "esfria", "vulnera"]]},
+  {"id": 10, "tipo": "esperado", "pergunta": "Como calculo a quantidade de água que a minha cultura precisa?", "doc_ids": ["T09"], "gabarito": "Pela evapotranspiração da cultura: ETc = ETo x Kc.", "chaves": [["kc"], ["eto", "evapotranspira"]]},
+  {"id": 11, "tipo": "esperado", "pergunta": "Qual método de cálculo da evapotranspiração é bem aceito no semiárido?", "doc_ids": ["T09"], "gabarito": "O método de Hargreaves.", "chaves": [["hargreaves"]]},
+  {"id": 12, "tipo": "esperado", "pergunta": "Existe um jeito barato de saber se o solo precisa de irrigação quando não tenho dados de clima?", "doc_ids": ["T10", "T11"], "gabarito": "Sim: o Irrigas (cápsula porosa e copo) ou o método do tato.", "chaves": [["irrigas", "tato"]]},
+  {"id": 13, "tipo": "esperado", "pergunta": "Como funciona o método do tato para saber a hora de irrigar?", "doc_ids": ["T11"], "gabarito": "Apertar uma amostra de solo na mão e avaliar cor, umidade e se ela se desfaz.", "chaves": [["mao"]]},
+  {"id": 14, "tipo": "esperado", "pergunta": "Quanto o Irrigas custa em comparação com um tensiômetro?", "doc_ids": ["T10"], "gabarito": "De 5 a 10 vezes menos.", "chaves": [["5 a 10", "cinco a dez", "5 e 10", "5-10"]]},
+  {"id": 15, "tipo": "esperado", "pergunta": "Como uso uma barra de ferro para saber se o solo está seco?", "doc_ids": ["T12"], "gabarito": "Cravar o vergalhão com peso de 2 kg e contar os golpes até 0,20 m, após calibrar com o tato.", "chaves": [["golpe"]]},
+  {"id": 16, "tipo": "esperado", "pergunta": "Como diminuir a perda de água na cova da bananeira?", "doc_ids": ["T13"], "gabarito": "Colocar um plástico de 0,40 x 0,40 m no fundo da cova.", "chaves": [["plastico"]]},
+  {"id": 17, "tipo": "esperado", "pergunta": "Que estruturas posso usar para guardar água para a época de seca?", "doc_ids": ["T14"], "gabarito": "Cisternas, barreiros-trincheira e barragens subterrâneas.", "chaves": [["cisterna", "barreiro", "barragem"]]},
+  {"id": 18, "tipo": "esperado", "pergunta": "O que plantar no lugar do milho numa área com muito risco de seca?", "doc_ids": ["T15"], "gabarito": "Sorgo (e palma forrageira).", "chaves": [["sorgo"]]},
+  {"id": 19, "tipo": "esperado", "pergunta": "Como manter a umidade do solo durante a estiagem?", "doc_ids": ["T16"], "gabarito": "Cobrir o solo com plantas vivas ou palha, revolver menos e incorporar matéria orgânica.", "chaves": [["palha", "cobert", "materia organica"]]},
+  {"id": 20, "tipo": "esperado", "pergunta": "Como preparar o rebanho para enfrentar a seca?", "doc_ids": ["T17"], "gabarito": "Reservar forragem com antecedência, banco de palma forrageira e ajustar a lotação.", "chaves": [["forragem", "palma", "lotacao", "quantidade de animais"]]},
+  {"id": 21, "tipo": "esperado", "pergunta": "Onde consulto a melhor época de plantio para o meu município?", "doc_ids": ["T18"], "gabarito": "No Zarc, pelo aplicativo Zarc Plantio Certo.", "chaves": [["zarc", "plantio certo"]]},
+  {"id": 22, "tipo": "esperado", "pergunta": "Como diminuir as perdas da soja em ano de El Niño?", "doc_ids": ["T19", "T20"], "gabarito": "Semear na janela do Zarc, escalonar a semeadura e combinar cultivares de ciclos diferentes.", "chaves": [["escalon", "zarc", "ciclo", "cobertura"]]},
+  {"id": 23, "tipo": "esperado", "pergunta": "Como evitar erosão na lavoura quando chove demais?", "doc_ids": ["T20", "T19"], "gabarito": "Semeadura em nível e terraços bem dimensionados.", "chaves": [["nivel", "terraco", "contorno"]]},
+  {"id": 24, "tipo": "esperado", "pergunta": "O que fazer quando sai um alerta laranja de granizo?", "doc_ids": ["T21"], "gabarito": "Evitar sair de casa e preparar um kit de emergência.", "chaves": [["kit", "evit", "sair de casa"]]},
+  {"id": 25, "tipo": "esperado", "pergunta": "O que fazer quando a Defesa Civil emite alerta roxo de vendaval?", "doc_ids": ["T22"], "gabarito": "Sair imediatamente das áreas de risco.", "chaves": [["imediat"]]},
+  {"id": 26, "tipo": "esperado", "pergunta": "Como preparar a casa antes de um vendaval?", "doc_ids": ["T23"], "gabarito": "Revisar o madeiramento do telhado, desligar aparelhos elétricos e gás e baixar objetos.", "chaves": [["telhado", "madeiramento"]]},
+  {"id": 27, "tipo": "esperado", "pergunta": "Para qual número ligo para chamar a Defesa Civil numa emergência?", "doc_ids": ["T24"], "gabarito": "199 (Bombeiros: 193).", "chaves": [["199"]]},
+  {"id": 28, "tipo": "nao_consta", "pergunta": "Qual o preço da saca de soja hoje em Rio Verde?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 29, "tipo": "nao_consta", "pergunta": "Qual o preço atual do saco de adubo nitrogenado no mercado de São Paulo?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 30, "tipo": "nao_consta", "pergunta": "Vai gear amanhã em Curitiba?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 31, "tipo": "nao_consta", "pergunta": "Qual a dose de glifosato por hectare na soja?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 32, "tipo": "nao_consta", "pergunta": "Quantos deputados federais o estado de São Paulo possui?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 33, "tipo": "nao_consta", "pergunta": "Qual é a programação de voos comerciais para o aeroporto de Viracopos amanhã?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 34, "tipo": "nao_consta", "pergunta": "Quanto custa o seguro rural para 10 hectares de milho?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 35, "tipo": "nao_consta", "pergunta": "Qual fungicida devo usar contra a ferrugem do café?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 36, "tipo": "nao_consta", "pergunta": "Qual a cotação do dólar hoje?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento.", "chaves": []},
+  {"id": 37, "tipo": "nao_consta", "pergunta": "Qual a lâmina de água ideal para o milho na fase vegetativa?", "doc_ids": [], "gabarito": "Não consta na base de conhecimento (o valor não está em nenhum trecho).", "chaves": []}
 ]

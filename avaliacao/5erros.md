@@ -1,38 +1,69 @@
-# Análise de 5 Erros Reais e Soluções Aplicadas
+# Análise de 5 erros reais
 
-Este documento detalha cinco falhas técnicas identificadas durante a fase de testes do assistente **AgroFácil GenAI**, incluindo a causa raiz e a correção implementada.
+> ⚠️ **PREENCHER depois de rodar `notebooks/04_avaliacao.ipynb`.** A última célula gera `avaliacao/erros_candidatos.csv` com todas as falhas do C3 e do sistema final e a causa provável de cada uma. Escolham **5 erros de causas diferentes** e copiem aqui **o que o modelo respondeu de verdade**. Não usem exemplos inventados.
 
----
+Causas que o notebook detecta automaticamente:
 
-### Erro 1: Alucinação em Perguntas Fora do Domínio
-* **Descrição:** Perante perguntas não agrícolas (ex: *"Quantos voos saem de Viracopos?"*), o modelo gerava respostas inventadas com base no seu conhecimento pré-treinado.
-* **Causa Raiz:** O modelo base `Qwen2.5` recebia a pergunta diretamente na inferência sem validação prévia de escopo ou contexto.
-* **Solução:** Implementação de um filtro léxico de termos agrícolas combinando validação vetorial com limiar de confiança na função `_gerar_real`.
-
----
-
-### Erro 2: Recuperação Forçada de Documentos Irrelevantes
-* **Descrição:** Consultas sobre política (ex: *"Quantos deputados federais o estado de São Paulo possui?"*) resultavam em respostas misturadas sobre a lagarta-do-cartucho.
-* **Causa Raiz:** O mecanismo de busca por similaridade vetorial retornava sempre o documento com maior produto escalar, mesmo que o score fosse irrelevante para a pergunta.
-* **Solução:** Ajuste do limiar de similaridade para $\ge 0.40$, acionando a resposta padrão `"Não consta na base de conhecimento."` quando o score é insuficiente.
+| Causa | O que significa | Correção típica |
+| :--- | :--- | :--- |
+| `recuperacao_errada` | o trecho certo não veio entre os 3 primeiros | reescrever o título/texto do trecho, dividir trechos longos, testar outro encoder ou busca híbrida (BM25 + vetorial) |
+| `recusa_indevida_por_limiar` | pergunta válida barrada pelo limiar | recalibrar o limiar com mais perguntas de validação; reformular o trecho para aproximar do vocabulário do produtor |
+| `recusa_indevida_pelo_modelo` | o trecho estava no contexto, mas o LLM disse "não consta" | mais exemplos positivos parecidos no `treino_lora.jsonl`; equilibrar respostas e recusas |
+| `alucinacao_fora_da_base` | respondeu algo que não está na base | mais exemplos de recusa no treino, principalmente do próprio tema agrícola (preço, dose de produto); regra de recusa para perguntas sobre "hoje/amanhã/preço" |
+| `resposta_incompleta_ou_errada` | respondeu, mas sem a informação do gabarito | exemplos de treino que copiem números e passos do trecho; aumentar `max_new_tokens` |
+| `citacao_errada` | resposta certa, mas citou outro trecho | exemplos de treino com o trecho correto em posições variadas do contexto (já embaralhamos) |
+| `json_invalido` | a saída não é JSON no formato | mais épocas de LoRA; decodificação restrita a JSON |
 
 ---
 
-### Erro 3: Estouro de Memória de GPU (CUDA Out of Memory)
-* **Descrição:** O script de execução da interface web falhava com o erro `OutOfMemoryError: CUDA out of memory`.
-* **Causa Raiz:** Tentar alocar o modelo principal `Qwen2.5` e o modelo de embeddings `SentenceTransformer` em simultâneo na VRAM da GPU T4.
-* **Solução:** Forçar a execução do codificador leve na CPU (`device='cpu'`), reservando a memória gráfica exclusivamente para o modelo gerador.
+### Erro 1: [título curto]
+- **Configuração:** (C3 ou Sistema final)
+- **Caso de teste:** nº __, "pergunta"
+- **Esperado (gabarito):** ...
+- **Resposta do modelo:** "..."
+- **Causa:** (causa provável + explicação: score top-1, trechos recuperados etc.)
+- **Correção proposta:** ...
+
+### Erro 2: [título curto]
+- **Configuração:**
+- **Caso de teste:**
+- **Esperado (gabarito):**
+- **Resposta do modelo:**
+- **Causa:**
+- **Correção proposta:**
+
+### Erro 3: [título curto]
+- **Configuração:**
+- **Caso de teste:**
+- **Esperado (gabarito):**
+- **Resposta do modelo:**
+- **Causa:**
+- **Correção proposta:**
+
+### Erro 4: [título curto]
+- **Configuração:**
+- **Caso de teste:**
+- **Esperado (gabarito):**
+- **Resposta do modelo:**
+- **Causa:**
+- **Correção proposta:**
+
+### Erro 5: [título curto]
+- **Configuração:**
+- **Caso de teste:**
+- **Esperado (gabarito):**
+- **Resposta do modelo:**
+- **Causa:**
+- **Correção proposta:**
 
 ---
 
-### Erro 4: Repetição do Prompt na Resposta Gerada
-* **Descrição:** A resposta devolvida na interface do Gradio exibia o prompt completo de instrução antes da resposta técnica final.
-* **Causa Raiz:** A função `tokenizer.decode()` descodifica toda a sequência de tokens gerada, incluindo os tokens do prompt de entrada.
-* **Solução:** Adicionada a rotina de limpeza de prefixo `if prompt_contextualizado in resp: resp = resp[len(prompt_contextualizado):].strip()`.
+## Erros de engenharia já corrigidos nesta versão
 
----
+Não contam como "erros do modelo", mas ficam registrados:
 
-### Erro 5: Erro de Indentação na Definição de Funções (IndentationError)
-* **Descrição:** O Notebook 3 falhava ao iniciar com a mensagem `IndentationError: expected an indented block`.
-* **Causa Raiz:** Inclusão de instruções de importação (`from sentence_transformers import...`) soltas no meio do bloco da função `_gerar_real`.
-* **Solução:** Reestruturação do código isolando o carregamento da base e do encoder no âmbito global antes da definição do manipulador do Gradio.
+1. **O LoRA não era usado na interface:** o notebook 03 carregava o Qwen em float16 sem o adaptador. Agora ele carrega o adaptador em 4 bits, pelo mesmo código avaliado (`src/agrofacil.py`).
+2. **O JSON tinha resposta fixa:** o campo `resposta` era uma frase escrita no código. Agora é o LLM que gera o JSON, e o sistema valida o formato e a citação.
+3. **O teste de recusa usava uma pergunta com resposta:** a "pergunta armadilha" era `casos_teste[0]`. Agora a demonstração usa perguntas "não consta" de verdade.
+4. **O filtro léxico deixava passar perguntas fora da base:** "preço do adubo" tinha a palavra "adubo" e score 0,597, acima do limiar de 0,40. O filtro foi removido, o limiar agora é escolhido em dados de validação e o LLM foi treinado para recusar.
+5. **Encoder em inglês para texto em português:** `all-MiniLM-L6-v2` foi trocado por `paraphrase-multilingual-MiniLM-L12-v2`; a comparação está em `avaliacao/recall.csv`.

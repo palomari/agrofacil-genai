@@ -1,0 +1,15 @@
+# Testado para Google Colab com GPU T4 (Python 3.10+)
+transformers>=4.46
+accelerate>=1.0
+peft>=0.13
+bitsandbytes>=0.44
+trl>=0.20
+datasets>=3.0
+sentence-transformers>=3.0
+gradio>=4.44
+fastapi>=0.110
+uvicorn>=0.29
+pandas
+numpy
+matplotlib
+tqdm
