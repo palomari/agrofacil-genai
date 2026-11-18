@@ -155,7 +155,7 @@ cd agrofacil-genai
 pip install -r requirements.txt
 ```
 
-Rode os notebooks **nesta ordem**. Cada um clona o repositório sozinho se for aberto direto no Colab.
+Rode os notebooks **nesta ordem**, na mesma conta Google. No Colab, a primeira célula monta o Google Drive e clona o repositório em `MyDrive/agrofacil-genai`, para que todos os notebooks compartilhem o limiar salvo no 01 e o adaptador LoRA treinado no 02. O adaptador já treinado está em `modelos/agrofacil_adapter/`, então para só avaliar ou abrir a interface é possível pular o notebook 02.
 
 | # | Notebook | O que faz | Gera |
 | :---: | :--- | :--- | :--- |
@@ -208,4 +208,4 @@ agrofacil-genai/
 
 A melhor configuração é **RAG + LoRA** (C3, igual ao sistema final): 74,1% de respostas corretas com a fonte certa, 100% de JSON válido e **100% de recusa** nas perguntas fora da base, contra 0% de acerto e respostas inventadas do LLM sozinho. O RAG resolveu a alucinação, mas com o modelo base ficou inseguro demais (44% de recusas indevidas); o LoRA, treinado com apenas 44 exemplos montados com o mesmo prompt do sistema, foi o que trouxe formato, citação e confiança. O principal erro restante é responder com segurança a partir do trecho errado (14,8%), causado sobretudo pela busca, e ele pesa mais em perguntas de emergência (caso do telefone). Os próximos passos são: busca híbrida (BM25 + vetorial) e reavaliação do encoder multilíngue; ampliar a base para outros biomas; checar automaticamente se cada frase da resposta está no trecho citado; e integrar os avisos do INMET em tempo real, que hoje caem corretamente em "não consta".
 
-**Links:** repositório https://github.com/palomari/agrofacil-genai · MVP https://cb9d4909b0a1bf37b7.gradio.live · vídeo ⚠️ PREENCHER
+**Links:** repositório https://github.com/palomari/agrofacil-genai · MVP https://cb9d4909b0a1bf37b7.gradio.live
