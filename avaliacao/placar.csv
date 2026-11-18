@@ -1,0 +1,5 @@
+configuracao,json_valido_%,resposta_correta_%,resposta_com_citacao_correta_%,recusa_correta_nao_consta_%,alucinacao_nao_consta_%,resposta_errada_afirmada_%,recusa_indevida_%,acerto_geral_%,latencia_media_s
+C1 · LLM base sem contexto,16.2,0.0,0.0,0.0,30.0,11.1,0.0,0.0,2.85
+C2 · RAG simples,91.9,44.4,25.9,100.0,0.0,0.0,44.4,45.9,3.98
+C3 · RAG + LoRA,100.0,81.5,74.1,100.0,0.0,14.8,3.7,81.1,7.79
+Sistema final · RAG + LoRA + limiar,100.0,81.5,74.1,100.0,0.0,14.8,3.7,81.1,7.63

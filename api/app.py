@@ -18,7 +18,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from src import agrofacil as af  # noqa: E402
+from src import agrofacil as af  
 
 log = logging.getLogger("agrofacil.api")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -60,7 +60,6 @@ def perguntar(p: Pergunta):
     cfg = ESTADO["cfg"]
     r = af.responder(p.pergunta, ESTADO["model"], ESTADO["tok"], buscador=ESTADO["buscador"],
                      modo="rag", limiar=cfg["limiar"], k=cfg.get("k", 3))
-    # LGPD: nada é persistido; o log de operação mascara dados pessoais
     log.info(json.dumps({"pergunta": af.mascarar_pii(p.pergunta), "status": r["status"],
                          "fonte_id": r["fonte_id"], "latencia_s": r["latencia_s"]}, ensure_ascii=False))
     return af.saida_publica(r)

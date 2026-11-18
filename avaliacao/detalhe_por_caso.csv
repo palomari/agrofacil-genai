@@ -1,0 +1,38 @@
+caso,tipo,pergunta,C1 · LLM base sem contexto,C2 · RAG simples,C3 · RAG + LoRA,Sistema final · RAG + LoRA + limiar
+1,esperado,O que significa quando o INMET emite um aviso na cor laranja?,✘ json_invalido,✘ nao_consta,✔ ok [T01],✔ ok [T01]
+2,esperado,Com quantos dias de antecedência o INMET pode emitir um aviso meteorológico?,✘ json_invalido,✔ ok [T01],✔ ok [T01],✔ ok [T01]
+3,esperado,Qual a diferença entre o aviso do INMET e o alerta da Defesa Civil?,✘ json_invalido,✔ ok [T02],✔ ok [T02],✔ ok [T02]
+4,esperado,Como faço para receber os alertas da Defesa Civil no meu celular?,✘ ok,✔ ok [T03],✔ ok [T03],✔ ok [T03]
+5,esperado,Em que condições do tempo a geada costuma acontecer?,✘ json_invalido,✔ ok [T04],✔ ok [T04],✔ ok [T04]
+6,esperado,Por que a geada é mais forte nas baixadas do terreno?,✘ json_invalido,✘ nao_consta,✔ ok [T04],✔ ok [T04]
+7,esperado,Quais culturas costumam ter as maiores perdas com geada?,✘ json_invalido,✘ ok [T04],✔ ok [T05],✔ ok [T05]
+8,esperado,A que horas devo ligar o pivô central para proteger a lavoura da geada?,✘ json_invalido,✘ ok [T04],✔ ok [T06],✔ ok [T06]
+9,esperado,Posso irrigar a lavoura no dia anterior à geada para prevenir o dano?,✘ json_invalido,✘ nao_consta,✘ ok [T07],✘ ok [T07]
+10,esperado,Como calculo a quantidade de água que a minha cultura precisa?,✘ ok,✘ nao_consta,✔ ok [T09],✔ ok [T09]
+11,esperado,Qual método de cálculo da evapotranspiração é bem aceito no semiárido?,✘ json_invalido,✘ json_invalido,✘ ok [T08],✘ ok [T08]
+12,esperado,Existe um jeito barato de saber se o solo precisa de irrigação quando não tenho dados de clima?,✘ json_invalido,✔ ok [T10],✔ ok [T10],✔ ok [T10]
+13,esperado,Como funciona o método do tato para saber a hora de irrigar?,✘ json_invalido,✘ ok [T07],✔ ok [T11],✔ ok [T11]
+14,esperado,Quanto o Irrigas custa em comparação com um tensiômetro?,✘ json_invalido,✘ nao_consta,✔ ok [T10],✔ ok [T10]
+15,esperado,Como uso uma barra de ferro para saber se o solo está seco?,✘ json_invalido,✘ nao_consta,✔ ok [T12],✔ ok [T12]
+16,esperado,Como diminuir a perda de água na cova da bananeira?,✘ json_invalido,✘ nao_consta,✘ ok [T16],✘ ok [T16]
+17,esperado,Que estruturas posso usar para guardar água para a época de seca?,✘ json_invalido,✔ ok [T14],✘ ok [T16],✘ ok [T16]
+18,esperado,O que plantar no lugar do milho numa área com muito risco de seca?,✘ json_invalido,✘ nao_consta,✔ ok [T15],✔ ok [T15]
+19,esperado,Como manter a umidade do solo durante a estiagem?,✘ json_invalido,✘ nao_consta,✔ ok [T16],✔ ok [T16]
+20,esperado,Como preparar o rebanho para enfrentar a seca?,✘ json_invalido,✘ ok [T15],✔ ok [T17],✔ ok [T17]
+21,esperado,Onde consulto a melhor época de plantio para o meu município?,✘ json_invalido,✔ ok [T18],✔ ok [T18],✔ ok [T18]
+22,esperado,Como diminuir as perdas da soja em ano de El Niño?,✘ json_invalido,✘ json_invalido,✔ ok [T19],✔ ok [T19]
+23,esperado,Como evitar erosão na lavoura quando chove demais?,✘ json_invalido,✘ nao_consta,✘ nao_consta,✘ nao_consta
+24,esperado,O que fazer quando sai um alerta laranja de granizo?,✘ json_invalido,✘ json_invalido,✔ ok [T21],✔ ok [T21]
+25,esperado,O que fazer quando a Defesa Civil emite alerta roxo de vendaval?,✘ ok,✘ nao_consta,✘ ok [T22],✘ ok [T22]
+26,esperado,Como preparar a casa antes de um vendaval?,✘ json_invalido,✘ ok [22],✔ ok [T23],✔ ok [T23]
+27,esperado,Para qual número ligo para chamar a Defesa Civil numa emergência?,✘ json_invalido,✘ nao_consta,✘ ok [T03],✘ ok [T03]
+28,nao_consta,Qual o preço da saca de soja hoje em Rio Verde?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta
+29,nao_consta,Qual o preço atual do saco de adubo nitrogenado no mercado de São Paulo?,✘ ok,✔ nao_consta,✔ nao_consta,✔ nao_consta
+30,nao_consta,Vai gear amanhã em Curitiba?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta
+31,nao_consta,Qual a dose de glifosato por hectare na soja?,✘ ok,✔ nao_consta,✔ nao_consta,✔ nao_consta
+32,nao_consta,Quantos deputados federais o estado de São Paulo possui?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta
+33,nao_consta,Qual é a programação de voos comerciais para o aeroporto de Viracopos amanhã?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta
+34,nao_consta,Quanto custa o seguro rural para 10 hectares de milho?,✘ ok,✔ nao_consta,✔ nao_consta,✔ nao_consta
+35,nao_consta,Qual fungicida devo usar contra a ferrugem do café?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta
+36,nao_consta,Qual a cotação do dólar hoje?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta
+37,nao_consta,Qual a lâmina de água ideal para o milho na fase vegetativa?,✘ json_invalido,✔ nao_consta,✔ nao_consta,✔ nao_consta

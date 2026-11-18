@@ -29,10 +29,10 @@ LLM local (`Qwen2.5-1.5B-Instruct`, 4 bits) com **RAG** sobre fontes oficiais (I
 | **Proposta de valor** | Alertas climáticos e um assistente que responde em linguagem simples, mostra a fonte oficial e diz "não consta" quando não sabe |
 | **Eixo do desafio de GenAI** | **Segurança**: segurança climática da família, da lavoura e da renda (alertas, geada, seca, granizo, vendaval). Ganho secundário em **energia**: irrigar só quando necessário evita bombeamento desnecessário |
 | **O que a IA resolve** | Responde perguntas sobre como se preparar e reagir a eventos climáticos e sobre irrigação na seca, **somente** com base na base técnica, em JSON `{resposta, fonte_id, status}` |
-| **Arquitetura: componentes** | Busca vetorial (encoder multilíngue) → limiar de recusa → Qwen2.5-1.5B + LoRA (4 bits) → validação de JSON e citação → interface Gradio e API FastAPI |
+| **Arquitetura: componentes** | Busca vetorial (encoder escolhido por recall no notebook 01) → limiar de recusa → Qwen2.5-1.5B + LoRA (4 bits) → validação de JSON e citação → interface Gradio e API FastAPI |
 | **Fontes de dados** | 24 trechos de 11 fontes oficiais e técnicas ([tabela](base/tabela_base.md)); a previsão do tempo vem do componente de Dados (Open-Meteo/INMET) |
-| **Modelos de IA utilizados** | `Qwen/Qwen2.5-1.5B-Instruct` (local, NF4), adaptador LoRA próprio, `paraphrase-multilingual-MiniLM-L12-v2` (embeddings) |
-| **URL do MVP e repositório** | ⚠️ PREENCHER: link do MVP · https://github.com/palomari/agrofacil-genai |
+| **Modelos de IA utilizados** | `Qwen/Qwen2.5-1.5B-Instruct` (local, NF4), adaptador LoRA próprio, encoder de embeddings `all-MiniLM-L6-v2` ou `paraphrase-multilingual-MiniLM-L12-v2` (escolhido por recall@3 no notebook 01) |
+| **URL do MVP e repositório** | MVP: https://cb9d4909b0a1bf37b7.gradio.live (link temporário do Gradio; para reproduzir, rode `notebooks/03_interface_web.ipynb`) · Repositório: https://github.com/palomari/agrofacil-genai |
 | **Indicadores de impacto** | % de respostas corretas com fonte; % de alucinação em perguntas fora da base ([placar](avaliacao/placar_comparativo.md)); produtores alertados antes do evento; perdas evitadas (estimativa com os produtores) |
 | **ODS conectados** | **ODS 2** (agricultura sustentável e segurança alimentar), **ODS 13** (adaptação a eventos climáticos extremos), **ODS 10** (acesso à informação técnica por quem tem menos assistência) |
 
@@ -44,7 +44,7 @@ LLM local (`Qwen2.5-1.5B-Instruct`, 4 bits) com **RAG** sobre fontes oficiais (I
 flowchart LR
     subgraph Base["Base de conhecimento (offline)"]
         F["Fontes oficiais<br/>INMET · Defesa Civil · Embrapa · EPAMIG"] --> T["base/trechos.jsonl<br/>24 trechos com id, fonte, URL e licença"]
-        T --> E["Embeddings<br/>multilingual-MiniLM-L12-v2"]
+        T --> E["Embeddings<br/>(encoder escolhido por recall)"]
         TR["base/treino_lora.jsonl<br/>44 perguntas (34 respostas + 10 recusas)"] --> L["QLoRA 4 bits<br/>notebook 02"]
     end
     U["Pergunta do produtor<br/>(Gradio / API)"] --> B["Busca vetorial top-3"]
@@ -87,35 +87,51 @@ Tabela completa, com links e IDs: [`base/tabela_base.md`](base/tabela_base.md).
 
 ## 5. Performance do modelo
 
-> ⚠️ **PREENCHER** com a tabela gerada em [`avaliacao/placar_comparativo.md`](avaliacao/placar_comparativo.md), depois de rodar o notebook 04. Não editar os números à mão.
+Todos os números abaixo foram gerados pelos notebooks 01 e 04 (GPU T4, geração determinística) e estão em [`avaliacao/`](avaliacao/).
 
-**Busca** (notebook 01, [`avaliacao/recall.csv`](avaliacao/recall.csv)):
+**Busca** (notebook 01, [`avaliacao/recall.csv`](avaliacao/recall.csv), 27 perguntas com resposta na base):
 
 | Encoder | recall@1 | recall@3 |
 | :--- | ---: | ---: |
-| all-MiniLM-L6-v2 (versão anterior) | ⚠️ | ⚠️ |
-| paraphrase-multilingual-MiniLM-L12-v2 | ⚠️ | ⚠️ |
+| **all-MiniLM-L6-v2 (escolhido)** | **0,704** | **0,926** |
+| paraphrase-multilingual-MiniLM-L12-v2 | 0,667 | 0,889 |
 
-**Limiar:** ⚠️ ___ (escolhido no conjunto de validação como o maior valor que mantém ≥ 95% das perguntas respondíveis; ver [`avaliacao/limiar.png`](avaliacao/limiar.png)).
+Critério: maior recall@3, porque o LLM recebe os 3 trechos, com desempate pelo recall@1. A diferença é de 1 pergunta em 27.
 
-**Placar das configurações** (notebook 04):
+**Limiar: 0,425**, escolhido no conjunto de validação (perguntas do treino, não do teste) como o maior valor que mantém ≥ 95% das perguntas respondíveis ([`limiar.csv`](avaliacao/limiar.csv), [`limiar.png`](avaliacao/limiar.png)).
 
-| Configuração | JSON válido | Correta + citação | Recusa correta | Alucinação fora da base | Recusa indevida |
-| :--- | ---: | ---: | ---: | ---: | ---: |
-| C1 · LLM base sem contexto | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| C2 · RAG simples | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| C3 · RAG + LoRA | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| Sistema final (C3 + limiar) | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+**Placar das configurações** (notebook 04, 37 casos: 27 com resposta na base e 10 "não consta"; tabela completa em [`placar_comparativo.md`](avaliacao/placar_comparativo.md)):
 
-**Interpretação:** ⚠️ copiar e revisar o texto gerado em `placar_comparativo.md`.
+| Configuração | JSON válido | Resposta correta | Correta + citação certa | Recusa correta (não consta) | Alucinação fora da base | Resposta errada afirmada | Recusa indevida | Latência |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| C1 · LLM base sem contexto | 16,2% | 0,0% | 0,0% | 0,0% | 30,0% | 11,1% | 0,0% | 2,9 s |
+| C2 · RAG simples | 91,9% | 44,4% | 25,9% | 100% | 0,0% | 0,0% | 44,4% | 4,0 s |
+| C3 · RAG + LoRA | **100%** | **81,5%** | **74,1%** | **100%** | **0,0%** | 14,8% | 3,7% | 7,8 s |
+| Sistema final (C3 + limiar) | **100%** | **81,5%** | **74,1%** | **100%** | **0,0%** | 14,8% | 3,7% | 7,6 s |
 
-**Demonstração de alucinações:** a penúltima seção do notebook 04 mostra, para cada pergunta "não consta", a resposta inventada pelo LLM sem contexto ao lado da recusa do sistema final.
+**Interpretação:**
+
+- **O LLM sozinho (C1) não serve para o produtor.** Ele não segue o formato (84% das saídas sem JSON válido), não tem fonte para citar e inventa respostas. Nos casos "não consta", deu faixas de preço para o adubo (R$ 10 a 20 o saco), "100 a 250 litros de glifosato por hectare" e "R$ 500 a 2.000 por hectare" de seguro rural, todos números sem nenhuma base. A métrica de 30% de alucinação **subestima** o problema, porque várias invenções vieram em JSON inválido e por isso não contam como "afirmadas".
+- **O RAG simples (C2) elimina a alucinação, mas fica inseguro demais.** O modelo base recusa 44% das perguntas que tinham resposta. Em vários casos, ele escreveu a resposta certa e mesmo assim marcou `"status": "nao_consta"` (por exemplo, a geada nas baixadas), e às vezes citou a fonte fora do formato (`"fonte_id": 22` em vez de `"T23"`).
+- **O LoRA (C3) é o maior ganho do projeto.** A resposta correta com citação certa sobe de 25,9% para **74,1%**, o JSON fica 100% válido e a recusa indevida cai de 44,4% para **3,7%**, mantendo **100% de recusa** nas perguntas fora da base. O custo é latência (7,8 s contra 4,0 s), porque as respostas ficam mais completas.
+- **O limiar não mudou o placar no teste.** Com o encoder escolhido, as perguntas em português recebem scores parecidos, dentro ou fora da base (deputados: 0,56; preço do adubo: 0,60). O limiar barrou só "Vai gear amanhã em Curitiba?" (0,379) e economizou essa chamada ao LLM; todas as outras recusas vieram do modelo treinado. O encoder multilíngue separava muito melhor as perguntas fora da base (no notebook 01, recusava 60% delas no limiar, contra 10%), ao custo de 1 pergunta a menos no recall@3. É um *trade-off* a reavaliar com uma base maior.
+- **O erro restante mais importante é a "resposta errada afirmada" (14,8%).** O modelo responde com segurança a partir do trecho errado ou omite a parte essencial. Ver os 5 erros.
+
+**Demonstração de alucinações:** a seção "Demonstração de alucinações" do notebook 04 mostra, pergunta a pergunta, a resposta inventada pelo C1 ao lado da recusa do sistema final.
 
 ---
 
 ## 6. Os 5 erros, a causa e a correção proposta
 
-Ver [`avaliacao/5erros.md`](avaliacao/5erros.md) (⚠️ preencher com os erros reais de `avaliacao/erros_candidatos.csv`).
+Ver [`avaliacao/5erros.md`](avaliacao/5erros.md). Resumo dos 5 erros reais do sistema final:
+
+| # | Caso | Erro | Causa | Correção |
+| :---: | :--- | :--- | :--- | :--- |
+| 1 | 27: número da Defesa Civil | Respondeu 40199 (SMS) em vez de 199 | T03 ficou em 1º na busca; o modelo usou o trecho mais parecido | Título do T24 com "telefone/ligar", busca híbrida e exemplos de treino; o aviso fixo já mostra 199/193 |
+| 2 | 9: irrigar na véspera da geada | "Irrigue no dia seguinte": instrução inventada | Modelo pequeno resume demais e completa a frase | Treino com respostas que mantêm o porquê; checagem de fidelidade ao trecho |
+| 3 | 16: cova da bananeira | Respondeu sobre cobertura do solo (T16) | T13 fora do top-3 (busca) e o modelo não recusou | Busca híbrida (BM25 + vetorial); treinar a recusa quando o trecho não responde |
+| 4 | 23: erosão com chuva | "Não consta" com resposta na base | T19/T20 fora do top-3: "chove demais" x "excesso de chuva" | Encoder multilíngue ou híbrido; sinônimos no texto do trecho |
+| 5 | 11: Hargreaves | Resposta certa, citou T08 em vez de T09 | Trechos vizinhos da mesma fonte | Validar a citação pela sobreposição do texto e corrigir o id |
 
 ---
 
@@ -190,6 +206,6 @@ agrofacil-genai/
 
 ## 10. Conclusão técnica
 
-> ⚠️ **PREENCHER** depois da avaliação (3 a 5 frases): qual configuração venceu e por quê, o quanto o RAG reduziu a alucinação em relação ao modelo sozinho, o que o LoRA acrescentou (formato, citação, recusa), qual o principal tipo de erro restante e qual o próximo passo (por exemplo, ampliar a base para outros biomas e integrar os avisos do INMET em tempo real).
+A melhor configuração é **RAG + LoRA** (C3, igual ao sistema final): 74,1% de respostas corretas com a fonte certa, 100% de JSON válido e **100% de recusa** nas perguntas fora da base, contra 0% de acerto e respostas inventadas do LLM sozinho. O RAG resolveu a alucinação, mas com o modelo base ficou inseguro demais (44% de recusas indevidas); o LoRA, treinado com apenas 44 exemplos montados com o mesmo prompt do sistema, foi o que trouxe formato, citação e confiança. O principal erro restante é responder com segurança a partir do trecho errado (14,8%), causado sobretudo pela busca, e ele pesa mais em perguntas de emergência (caso do telefone). Os próximos passos são: busca híbrida (BM25 + vetorial) e reavaliação do encoder multilíngue; ampliar a base para outros biomas; checar automaticamente se cada frase da resposta está no trecho citado; e integrar os avisos do INMET em tempo real, que hoje caem corretamente em "não consta".
 
-**Links:** repositório https://github.com/palomari/agrofacil-genai · vídeo ⚠️ PREENCHER
+**Links:** repositório https://github.com/palomari/agrofacil-genai · MVP https://cb9d4909b0a1bf37b7.gradio.live · vídeo ⚠️ PREENCHER

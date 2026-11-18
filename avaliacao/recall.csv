@@ -1,0 +1,3 @@
+encoder,recall@1,recall@3,perguntas,escolhido
+all-MiniLM-L6-v2,0.704,0.926,27,True
+paraphrase-multilingual-MiniLM-L12-v2,0.667,0.889,27,False
