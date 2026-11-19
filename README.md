@@ -32,9 +32,23 @@ LLM local (`Qwen2.5-1.5B-Instruct`, 4 bits) com **RAG** sobre fontes oficiais (I
 | **Arquitetura: componentes** | Busca vetorial (encoder escolhido por recall no notebook 01) → limiar de recusa → Qwen2.5-1.5B + LoRA (4 bits) → validação de JSON e citação → interface Gradio e API FastAPI |
 | **Fontes de dados** | 24 trechos de 11 fontes oficiais e técnicas ([tabela](base/tabela_base.md)); a previsão do tempo vem do componente de Dados (Open-Meteo/INMET) |
 | **Modelos de IA utilizados** | `Qwen/Qwen2.5-1.5B-Instruct` (local, NF4), adaptador LoRA próprio, encoder de embeddings `all-MiniLM-L6-v2` ou `paraphrase-multilingual-MiniLM-L12-v2` (escolhido por recall@3 no notebook 01) |
-| **URL do MVP e repositório** | MVP: https://cb9d4909b0a1bf37b7.gradio.live (link temporário do Gradio; para reproduzir, rode `notebooks/03_interface_web.ipynb`) · Repositório: https://github.com/palomari/agrofacil-genai |
+| **URL do MVP e repositório** | MVP: interface Gradio, executada pelo [`notebooks/03_interface_web.ipynb`](notebooks/03_interface_web.ipynb) (gera um link público temporário a cada execução; ver as [capturas da interface](#demonstração-da-interface)) · Repositório: https://github.com/palomari/agrofacil-genai |
 | **Indicadores de impacto** | % de respostas corretas com fonte; % de alucinação em perguntas fora da base ([placar](avaliacao/placar_comparativo.md)); produtores alertados antes do evento; perdas evitadas (estimativa com os produtores) |
 | **ODS conectados** | **ODS 2** (agricultura sustentável e segurança alimentar), **ODS 13** (adaptação a eventos climáticos extremos), **ODS 10** (acesso à informação técnica por quem tem menos assistência) |
+
+### Demonstração da interface
+
+Capturas da interface Gradio rodando no Colab (GPU T4) com o sistema final (RAG + LoRA + limiar). O link público do Gradio dura só enquanto o notebook 03 está em execução; para usar a interface, rode [`notebooks/03_interface_web.ipynb`](notebooks/03_interface_web.ipynb).
+
+| Tela inicial, com sugestões de perguntas | Geração da resposta pelo LLM local |
+| :---: | :---: |
+| ![Tela inicial](docs/01_tela_inicial.png) | ![Gerando resposta](docs/02_gerando_resposta.png) |
+
+| Pergunta sobre geada: resposta com a fonte T06 e o aviso de segurança | Pergunta sobre seca: resposta com a fonte T14 e o aviso de segurança |
+| :---: | :---: |
+| ![Resposta sobre geada](docs/03_resposta_geada_pivo.png) | ![Resposta sobre seca](docs/04_resposta_agua_seca.png) |
+
+Na captura da geada, a resposta repete "por volta das 3h da madrugada" duas vezes. É uma limitação do modelo de 1,5B do mesmo tipo do erro 2 (ver os 5 erros). As recusas ("Não consta na base de conhecimento.") aparecem na saída salva do notebook 03 e na seção "Demonstração de alucinações" do notebook 04.
 
 ---
 
@@ -155,7 +169,7 @@ cd agrofacil-genai
 pip install -r requirements.txt
 ```
 
-Rode os notebooks **nesta ordem**. Cada um clona o repositório sozinho se for aberto direto no Colab.
+Rode os notebooks **nesta ordem**, na mesma conta Google. No Colab, a primeira célula monta o Google Drive e clona o repositório em `MyDrive/agrofacil-genai`, para que todos os notebooks compartilhem o limiar salvo no 01 e o adaptador LoRA treinado no 02. O adaptador já treinado está em `modelos/agrofacil_adapter/`, então para só avaliar ou abrir a interface é possível pular o notebook 02.
 
 | # | Notebook | O que faz | Gera |
 | :---: | :--- | :--- | :--- |
@@ -208,4 +222,4 @@ agrofacil-genai/
 
 A melhor configuração é **RAG + LoRA** (C3, igual ao sistema final): 74,1% de respostas corretas com a fonte certa, 100% de JSON válido e **100% de recusa** nas perguntas fora da base, contra 0% de acerto e respostas inventadas do LLM sozinho. O RAG resolveu a alucinação, mas com o modelo base ficou inseguro demais (44% de recusas indevidas); o LoRA, treinado com apenas 44 exemplos montados com o mesmo prompt do sistema, foi o que trouxe formato, citação e confiança. O principal erro restante é responder com segurança a partir do trecho errado (14,8%), causado sobretudo pela busca, e ele pesa mais em perguntas de emergência (caso do telefone). Os próximos passos são: busca híbrida (BM25 + vetorial) e reavaliação do encoder multilíngue; ampliar a base para outros biomas; checar automaticamente se cada frase da resposta está no trecho citado; e integrar os avisos do INMET em tempo real, que hoje caem corretamente em "não consta".
 
-**Links:** repositório https://github.com/palomari/agrofacil-genai · MVP https://cb9d4909b0a1bf37b7.gradio.live · vídeo ⚠️ PREENCHER
+**Links:** repositório https://github.com/palomari/agrofacil-genai · MVP: [capturas da interface](#demonstração-da-interface) e [`notebooks/03_interface_web.ipynb`](notebooks/03_interface_web.ipynb)
